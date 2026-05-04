@@ -1,0 +1,47 @@
+[package]
+name = "bitcoin-p2p-messages"
+version = "0.1.0"
+authors = ["Yancy <rust@yancy.lol>"]
+license = "CC0-1.0"
+repository = "https://github.com/rust-bitcoin/rust-bitcoin"
+homepage = "http://yancy.lol"
+description = "Peer-to-peer messages defined by the Bitcoin protocol"
+categories = ["cryptography::cryptocurrencies"]
+keywords = ["bitcoin", "peer-to-peer"]
+readme = "README.md"
+edition = "2021"
+rust-version = "1.74.0"
+exclude = ["tests"]
+
+[features]
+default = ["std"]
+std = ["encoding/std", "hashes/std", "network/std", "hex-stable/std", "hex-unstable/std", "internals/std", "io/std", "units/std", "bitcoin/std", "primitives/std"]
+arbitrary = ["dep:arbitrary", "bitcoin/arbitrary"]
+serde = ["dep:serde", "hashes/serde"]
+
+[dependencies]
+bitcoin = { path = "../rust-bitcoin/bitcoin/", default-features = false }
+encoding = { package = "bitcoin-consensus-encoding", version = "0.2.0", path = "../rust-bitcoin/consensus_encoding", default-features = false }
+hashes = { package = "bitcoin_hashes", version = "0.20.0", path = "../rust-bitcoin/hashes", default-features = false }
+network = { package = "bitcoin-network-kind", path = "../rust-bitcoin/network", version = "0.1.0", default-features = false }
+primitives = { package = "bitcoin-primitives", path = "../rust-bitcoin/primitives", version = "0.102.0", default-features = false }
+hex-stable = { package = "hex-conservative", version = "1.0.0", default-features = false, features = ["alloc"] }
+hex-unstable = { package = "hex-conservative", version = "0.3.2", default-features = false }
+internals = { package = "bitcoin-internals", path = "../rust-bitcoin/internals", default-features = false }
+io = { package = "bitcoin-io", version = "0.5.0", path = "../rust-bitcoin/io", default-features = false }
+units = { package = "bitcoin-units", path = "../rust-bitcoin/units", version = "0.3.0", default-features = false }
+
+arbitrary = { version = "1.4.1", optional = true }
+serde = { version = "1.0.195", default-features = false, features = ["derive", "alloc"], optional = true }
+
+[[example]]
+name = "handshake"
+required-features = ["std"]
+
+[[example]]
+name = "ping-pong"
+required-features = ["std"]
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
