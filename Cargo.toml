@@ -1,5 +1,5 @@
 [package]
-name = "bitcoin-p2p-messages"
+name = "bitcoin-p2p-min"
 version = "0.1.0"
 authors = ["Yancy <rust@yancy.lol>"]
 license = "CC0-1.0"
@@ -33,14 +33,6 @@ units = { package = "bitcoin-units", path = "../rust-bitcoin/units", version = "
 
 arbitrary = { version = "1.4.1", optional = true }
 serde = { version = "1.0.195", default-features = false, features = ["derive", "alloc"], optional = true }
-
-[[example]]
-name = "handshake"
-required-features = ["std"]
-
-[[example]]
-name = "ping-pong"
-required-features = ["std"]
 
 [package.metadata.docs.rs]
 all-features = true
